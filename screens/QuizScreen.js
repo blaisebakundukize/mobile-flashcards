@@ -140,9 +140,15 @@ class QuizScreen extends Component {
 
           {currentQuestion <= numberOfQuestions && numberOfQuestions !== 0 && (
             <View style={styles.content}>
-              <Text style={styles.currentQuestion}>
-                {currentQuestion} / {numberOfQuestions}
-              </Text>
+              <View style={styles.containerCurrentQuestion}>
+                <Text style={styles.currentQuestion}>
+                  {currentQuestion} / {numberOfQuestions}
+                </Text>
+                <Text style={styles.remainQuestion}>
+                  <Text style={{ color: Colors.grey }}>Remaining: </Text>
+                  {numberOfQuestions - currentQuestion}
+                </Text>
+              </View>
               {!showAnswer ? (
                 <Text style={styles.displayBox}>
                   <Text style={styles.label}>Question:</Text>
@@ -187,7 +193,6 @@ class QuizScreen extends Component {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    alignItems: "center",
     paddingHorizontal: 10,
     paddingVertical: 50,
   },
@@ -195,9 +200,22 @@ const styles = StyleSheet.create({
     width: "100%",
     alignItems: "center",
   },
+  containerCurrentQuestion: {
+    width: "80%",
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    marginBottom: 10,
+  },
   currentQuestion: {
     fontSize: 17,
     fontWeight: "bold",
+    justifyContent: "flex-start",
+  },
+  remainQuestion: {
+    fontSize: 17,
+    fontWeight: "bold",
+    justifyContent: "flex-end",
   },
   text: {
     textAlign: "center",
